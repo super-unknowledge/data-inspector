@@ -8,5 +8,5 @@ df = pd.read_csv("HRDataset_v14.csv")
 conn = sqlite3.connect("hr_data.db")
 
 # Export the data into an SQLite table
-df.to_sql("target_table_name", conn, if_exists="replace", index=False)
+df.to_sql("hr_data", conn, if_exists="replace", index=False)
 conn.close()
