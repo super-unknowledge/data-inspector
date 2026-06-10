@@ -7,7 +7,7 @@ requires-python = ">=3.12"
 dependencies = [
     "groq>=1.4.0",
     "matplotlib>=3.10.9",
-    "mcp>=1.27.2",
+    "mcp[cli]>=1.27.2",
     "pandas>=3.0.3",
     "streamlit>=1.58.0",
 ]
