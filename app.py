@@ -117,6 +117,9 @@ if "messages" not in st.session_state:
         }
     ]
 
+if "chart_by_index" not in st.session_state:
+    st.session_state.chart_by_index = {}
+
 
 def truncate_output(text: str) -> str:
     if len(text) <= MAX_TOOL_OUTPUT_CHARS:
@@ -238,7 +241,7 @@ def run_agent(user_prompt: str) -> tuple[str, Path | None]:
 # ---------------------------------------------------------------------------
 # Render chat history (user/assistant only)
 # ---------------------------------------------------------------------------
-for msg in st.session_state.messages:
+for i, msg in enumerate(st.session_state.messages):
     if msg["role"] not in ("user", "assistant"):
         continue
     if not msg.get("content"):
@@ -246,8 +249,8 @@ for msg in st.session_state.messages:
 
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
-        if "chart_path" in msg:
-            st.image(str(msg["chart_path"]))
+        if i in st.session_state.chart_by_index:
+            st.image(st.session_state.chart_by_index[i])
 
 
 # ---------------------------------------------------------------------------
@@ -266,7 +269,7 @@ if user_prompt := st.chat_input("Ask me anything about your HR data..."):
 
             if chart_path is not None:
                 st.image(str(chart_path))
-                st.session_state.messages[-1]["chart_path"] = str(chart_path)
+                st.session_state.chart_by_index[len(st.session_state.messages) - 1] = str(chart_path)
 
         except RuntimeError as exc:
             st.error(str(exc))
