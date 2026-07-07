@@ -1,9 +1,63 @@
 # data-inspector
 An MCP-Powered Analytics Agent paired with a lightweight UI that allows a user to ask complex questions and receive structured data analysis, complete with automated visualizations.
 
+The dataset used can be found here: https://www.kaggle.com/datasets/rhuebner/human-resources-data-set
+
 ### How to run:
 
 clone the project and then run `uv run streamlit run app.py` to start the app
+
+🚀 Getting Started
+Follow these steps to clone the repository, set up your local environment, and launch the Autonomous Data Inspector.
+
+Prerequisites
+Python 3.11 or 3.12 installed on your system.
+
+uv (The ultra-fast Python package and project manager).
+
+If you don't have uv installed, run: curl -LsSf https://astral.sh/uv/install.sh | sh (Linux/macOS) or powershell -c "irm https://astral.sh/uv/install.ps1 | iex" (Windows).
+
+Step 1: Clone the Repository
+Clone this repository to your local machine and navigate into the project directory:
+
+Bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
+Step 2: Add the Database File
+Ensure that the hr_data.db SQLite file provided to you is placed directly in the root directory of this project:
+
+Plaintext
+your-repo-name/
+├── app.py
+├── mcp_server.py
+├── hr_data.db  <-- Place the file here
+└── pyproject.toml
+Step 3: Configure Your API Key
+The AI agent uses Groq for free, rapid inference.
+
+Get a free API key from the Groq Console.
+
+Export it as an environment variable in your terminal:
+
+Bash
+# On Linux / macOS
+export GROQ_API_KEY="gsk_your_actual_api_key_here"
+
+# On Windows (Command Prompt)
+set GROQ_API_KEY=gsk_your_actual_api_key_here
+
+# On Windows (PowerShell)
+$env:GROQ_API_KEY="gsk_your_actual_api_key_here"
+(Alternatively, you can skip this step and paste your API key directly into the application's sidebar UI once it launches).
+
+Step 4: Launch the Application
+Because this project utilizes uv, you do not need to manually create virtual environments or run separate pip install commands. uv will read the pyproject.toml file, automatically download the correct dependencies in milliseconds, and run the app safely isolated.
+
+Simply execute:
+
+Bash
+uv run streamlit run app.py
+Streamlit will boot up and provide a local web address (usually http://localhost:8501). Open this link in your browser to start interacting with your data agent!
 
 ### Demo
 Prompt
